@@ -4,43 +4,50 @@ using namespace std;
 
 int main()
 {
-    int n,l,d,t=0,z=0,x=0;;
+    int n,x,k=0,j;
     cin>>n;
-    int ans[n];
+    int a[n];
     string s;
     for(int i=0;i<n;i++)
     {
         cin>>s;
-        l=s.size();
-        while(1)
+        cin>>x;
+        j=0;
+        while(s[j+x-1]!='\0')
         {
-            x=0;
-            for(int j=0;j<l-1;j++)
+            cout<<"  "<<j<<endl;
+            if(s[j]=='-')
             {
-             if(s[j]=='1'&&s[j+1]=='0')
-             {
-                 s[j]='0';
-                 t++;
-                 d=j+1;
-                 while(s[d]!='1'&&d<l)
-                    d++;
-                 s[d-1]='1';
-                 z=z+d-1-j;
-                 j=d-1;
-                 x=1;
-             }
+                s[j]='+';
+                s[j+1]='+';
+                s[j+2]='+';
+                k++;
             }
-            if(x==1)
-                continue;
-            if(x==0){
-                ans[i]=t+z;
+            j++;
+        }
+        j=0;
+        while(s[j]!='\0')
+        {
+            cout<<s[j];
+            if(s[j]!='+')
+            {
+                a[i]=-1;
                 break;
             }
-    }
-    t=0;
-    z=0;
+            j++;
+        }
+        if(s[j]=='\0')
+            a[i]=k;
+            k=0;
     }
     for(int i=0;i<n;i++)
-        cout<<ans[i]<<endl;
+    {
+        cout<<"Case #"<<i+1<<": ";
+        if(a[i]!=-1)
+            cout<<a[i];
+        else
+            cout<<"IMPOSIBLE";
+        cout<<"\n";
+    }
     return 0;
 }
